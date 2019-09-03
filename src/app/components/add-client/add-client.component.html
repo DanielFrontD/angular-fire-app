@@ -1,0 +1,63 @@
+<div class="container">
+  <form [formGroup]="formAddClient">
+    <div class="form-group">
+      <label for="clientName">Name</label>
+      <input
+        id="clientName"
+        formControlName="name"
+        type="text"
+        class="form-control"
+        [ngClass]="{'is-invalid': submit && formAddClient.controls['name'].invalid }"
+        placeholder="Enter a name">
+    </div>
+
+    <div class="form-group">
+      <label for="clientLastName">Last Name</label>
+      <input
+        id="clientLastName"
+        formControlName="lastname"
+        type="text"
+        class="form-control"
+        [ngClass]="{'is-invalid': submit && formAddClient.controls['lastname'].invalid }"
+        placeholder="Enter a Last Name">
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="clientBirthdate">Birthdate</label>
+          <input
+            (click)="d.toggle()"
+            id="clientBirthdate"
+            formControlName="birthdate"
+            type="text"
+            #d="ngbDatepicker"
+            ngbDatepicker
+            class="form-control"
+            [ngClass]="{'is-invalid': submit && formAddClient.controls['birthdate'].invalid }"
+            placeholder="Enter Birthdate"
+            (dateSelect)="dateHandler($event)">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="age">
+          <label for="clientAge">Age:</label>
+          <input
+            id="clientAge"
+            [(ngModel)]="age"
+            [ngModelOptions]="{standalone: true}"
+            type="text"
+            class="form-control"
+            disabled>
+        </div>
+      </div>
+    </div>
+
+    <button
+      (click)="sendForm()"
+      type="submit"
+      class="btn btn-primary">
+      Submit
+    </button>
+  </form>
+</div>
